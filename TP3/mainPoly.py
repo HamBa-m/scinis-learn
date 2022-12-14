@@ -32,5 +32,7 @@ def h(wop,x):
 
 hyper = [h(w0, e) for e in Z]
 plt.plot(Z,hyper,"-b" )
-
+plt.xlabel("temperature")
+plt.ylabel("pressure")
+plt.title("polynomial regression hypothesis\ndegree = "+str(5)+", empirical loss = "+"{0:.6f}".format(ls))
 plt.show()
