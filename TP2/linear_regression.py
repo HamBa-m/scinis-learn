@@ -5,17 +5,17 @@ from numpy import linalg as lg
 def hs(x,w):
     return w.T @ x
 
-# gradient of loss function
+# cost function
 def e(x,y,w):
     return y - w.T @ x
 
-# empirical loss function
+# empirical error function
 def loss(X,Y,w):
     n = len(X) # size of data sample
     error = [(e(X[i], Y[i], w))**2 for i in range(len(X))]
     return np.sum(error)/n
 
-# linear regression
+# linear regression (algebric approach)
 def LinearRegression(X,Y):
     '''
     X: matrix of vectors x_i
