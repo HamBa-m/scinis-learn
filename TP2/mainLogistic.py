@@ -56,7 +56,7 @@ fig.colorbar(surf, shrink=0.5, aspect=5)
 ax.set_xlabel("GRE")
 ax.set_ylabel("GPA")
 ax.set_zlabel("probability")
-ax.set_title("Plot of Decision Boundary with Logistic Regression.\nEmpirical Loss: "+"{0:.6f}".format(ls)+" nbr of iterations: "+str(t))
+ax.set_title("Plot of Decision Boundary with Logistic Regression.\nEmpirical Loss: "+"{0:.6f}".format(ls)+" | nbr of iterations: "+str(t))
 
 plt.show()
 

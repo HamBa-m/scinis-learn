@@ -29,17 +29,13 @@ def gradient(X,Y,w):
     return dL / n
 
 # logistic regression
-def LogisticRegression(X,Y, lr = 0.5, Tmax = 1000):
-    '''
-    X: matrix of vectors x_i
-    Y: vector of labels (scalars, 1 or 0) y_i
-    lr: learning rate for the gradient descent, 0.5 by default
-    Tmax: maximum number of iteration
-    '''
-    w = np.array([0.]*len(X[0]))
-    n, t = len(X), 0
-    while lg.norm(gradient(X,Y,w)) != 0 and t < Tmax :
-        w -= gradient(X, Y, w) * lr
-        print("t=",t,"\t| empirical loss: ", "{0:.6f}".format(loss(X,Y,w)))
+def LogisticRegression(X,Y, lr = 0.1, Tmax = 2000, epsilon = 0.4):
+    t = 0 #initialisation de compteur
+    w = np.zeros(X.shape[1])
+    Ls = loss(X,Y,w)
+    while(np.linalg.norm(Ls) > epsilon and t < Tmax):
+        print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(Ls))
+        w -= lr * gradient(X,Y,w)
+        Ls = loss(X,Y,w)
         t += 1
-    return w, t, loss(X,Y,w)
+    return w, t, np.linalg.norm(Ls)

@@ -42,7 +42,7 @@ def LinearRegressionforPoly(X,Y,n):
     w = np.dot(Aplus,b)
     return w, loss(X_,Y,w)
 
-# polynomial regression mapping for multidimensional input
+# polynomial mapping for multidimensional input
 def psy(x,q):
     """
     x: input vector
