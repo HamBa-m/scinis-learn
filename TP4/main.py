@@ -20,18 +20,20 @@ with open('ex2data2.csv', mode='r') as csv_file:
 
 X, Y = np.asarray(X), np.asarray(Y)
 
-# X_ = np.asarray([psy(x,2) for x in X])
-w0, t, ls = LogisticRegression(X, Y, eps = 0.1)
+X_ = np.asarray([psy(x,2) for x in X])
+w0, t, ls = LogisticRegression(X_, Y, eps = 0.1)
 print("FINAL RESULTS:")
 print("optimal weight vector: ", w0,"\t| empirical loss: ", "{0:.6f}".format(ls))
 
+fig, axes = plt.subplots()
 # plot results
-plt.plot(X1,Y1,'+', color="black", label = 'y = 1')
-plt.plot(X2,Y2,'o', color="yellow", label = 'y = 0')
+axes.plot(X1,Y1,'+', color="black", label = 'y = 1')
+axes.plot(X2,Y2,'o', color="yellow", label = 'y = 0')
 
+plotDecisionBoundary(w0, X_, axes)
 
-plt.xlabel("Microship Test 1")
-plt.ylabel("Microship Test 2")
-plt.legend()
-plt.title("data plot")
-plt.show()
+axes.xlabel("probability")
+axes.ylabel("Microship Test 2")
+axes.legend()
+axes.title("data plot")
+axes.show()

@@ -34,7 +34,6 @@ def LogisticRegression(X, Y, lr = 0.1, Tmax = 1000, eps = 0.2):
     t = 0 #initialisation de compteur
     w = np.zeros(X.shape[1])
     ls = Ls(X,Y,w)
-    print(Ls)
     while(ls > eps and t < Tmax):
         if not(t%100) : print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(ls))
         w -= lr * DLs(X,Y,w)
@@ -56,3 +55,25 @@ def psy(x,q):
             for k in range(d):
                 w.append(PSI_Q[i][j] * x[k])
     return np.array(w)
+
+# define a function to plot the decision boundary (NOT FINAL)
+def plotDecisionBoundary(w0, X_, axes):
+    u = np.linspace(-1, 1.5, 50)
+    v = np.linspace(-1, 1.5, 50)
+    U,V = np.meshgrid(u,v)
+    # convert U, V to vectors for calculating additional features
+    # using vectorized implementation
+    U = np.ravel(U)
+    V = np.ravel(V)
+    Z = np.zeros((len(u) * len(v)))
+    
+    Z = X_.dot(w0)
+    
+    # reshape U, V, Z back to matrix
+    U = U.reshape((len(u), len(v)))
+    V = V.reshape((len(u), len(v)))
+    Z = Z.reshape((len(u), len(v)))
+    
+    cs = axes.contour(U,V,Z,levels=[0],cmap= "Greys_r")
+    axes.legend(labels=['1', '0', 'Decision Boundary'])
+    return cs
