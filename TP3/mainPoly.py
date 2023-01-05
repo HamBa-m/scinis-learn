@@ -12,7 +12,7 @@ with open('pressure.csv', mode='r') as csv_file:
 X1, X2, Y = np.asarray(X1), np.asarray(X2), np.asarray(Y)
 
 # linear regression for polynomial tasks
-w0, ls = LinearRegressionforPoly(X1, Y, 5)
+w0, ls = LinearRegressionforPoly(X1, Y, 4)
 print("FINAL RESULTS 1:")
 print("optimal weight vector: ", w0, "\t| empirical loss: ", "{0:.6f}".format(ls))
 

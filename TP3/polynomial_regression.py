@@ -15,12 +15,12 @@ def hs(x,w):
 
 # cost function
 def e(x,y,w):
-    return y - w.T @ x
+    return y - hs(x,w)
 
 # empirical error function
 def loss(X,Y,w):
     n = len(X) # size of data sample
-    error = [(e(X[i], Y[i], w))**2 for i in range(len(X))]
+    error = [(e(X[i], Y[i], w))**2 for i in range(len(X))] # Mean-Squared Error (MSE)
     return np.sum(error)/n
 
 # Linear regression for polynomial tasks (1 dimension)
