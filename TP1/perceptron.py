@@ -1,8 +1,12 @@
 import numpy as np
 
-# perceptron hypothesis 
+# pereceptron hypothesis
+def h(x,w):
+    return w.T @ x
+
+# hypothesis sign
 def hs(x,w):
-    if np.sign(w.T @ x) > 0 : return 1
+    if np.sign(h(x,w)) > 0 : return 1
     return -1
 
 # empirical loss function

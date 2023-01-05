@@ -18,16 +18,16 @@ def loss(X,Y,w):
     return np.sum(error)/n
 
 # Single Layer Perceptron with Adaline
-def Adaline(X,Y,w, delta = 0.2):
+def Adaline(X,Y,w, eps = 0.2):
     '''
     X: list of vectors x_i
     Y: list of labels (scalars, 1 or -1) y_i
     w: weights vector
-    delta: precision factor
+    eps: precision factor
     '''
     n, t = len(X), 0
     lr = 0.0001 # learning rate for the gradient descent
-    while abs(gradient(X,Y,w)) > delta and t < 2000 :
+    while abs(gradient(X,Y,w)) > eps and t < 1000 :
         print(gradient(X,Y,w))
         for i in range(n):
             if e(X[i], Y[i], w) != 0 : w += 2 * X[i] * e(X[i], Y[i], w) * lr
