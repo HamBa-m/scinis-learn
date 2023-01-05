@@ -9,9 +9,6 @@ with open('binary.csv', mode='r') as csv_file:
         Y.append(np.array([int(row["admit"])]))
 
 # tranformation functions to normalize data
-# softmax transformer
-def trMinMax(x, m, M):
-    return (x - m)/(M - m)
 
 # Z-value transformer
 def Zvalue(x,mean,std):
@@ -19,12 +16,10 @@ def Zvalue(x,mean,std):
 
 # data normalization
 X, Y = np.asarray(X), np.asarray(Y)
-mx, Mx, my, My = np.min(X[:,1]),np.max(X[:,1]),np.min(X[:,2]),np.max(X[:,2])
 meanX, meanY, stdX, stdY = np.mean(X[:,1]), np.mean(X[:,2]), np.std(X[:,1]), np.std(X[:,2])
 
 for i in range(len(X)):
-    # using max-min tranformer
-    # X[i][1], X[i][2] = trMinMax(X[i][1],mx,Mx), trMinMax(X[i][2], my,My)
+    # using z-value tranformer
     X[i][1], X[i][2] = Zvalue(X[i][1], meanX, stdX), Zvalue(X[i][2], meanY, stdY)
 
 

@@ -20,6 +20,6 @@ for i in range(len(X)):
     # using max-min tranformer
     X[i][1], X[i][2], X[i][3] = trMinMax(X[i][1],mx,Mx), trMinMax(X[i][2], my,My), trMinMax(X[i][3], mz,Mz)
 
-w0, t, ls = LogisticRegression(X, Y)
+w0, t, ls = LogisticRegression(X, Y, Tmax = 1000)
 print("FINAL RESULTS:")
 print("optimal weight vector: ", w0,"\t| iterations: ", t, "\t| empirical loss: ", "{0:.6f}".format(ls))

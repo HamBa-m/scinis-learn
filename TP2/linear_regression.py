@@ -7,7 +7,7 @@ def hs(x,w):
 
 # cost function
 def e(x,y,w):
-    return y - w.T @ x
+    return y - hs(x,w)
 
 # empirical error function
 def loss(X,Y,w):
@@ -27,6 +27,6 @@ def LinearRegression(X,Y):
     b = np.dot(X.T, Y) 
     # computes the pseudoinverse of A using a Singular-Value Decomposition algorithm
     Aplus = lg.pinv(A)
-    # solve the linear system A.w = b
+    # solve the linear system Aplus.b = w
     w = np.dot(Aplus,b)
     return w, loss(X,Y,w)

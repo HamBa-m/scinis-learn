@@ -35,7 +35,7 @@ def LogisticRegression(X,Y, lr = 0.1, Tmax = 2000, epsilon = 0.4):
     Ls = loss(X,Y,w)
     while(np.linalg.norm(Ls) > epsilon and t < Tmax):
         print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(Ls))
-        w -= lr * gradient(X,Y,w)
+        w -= lr * gradient(X,Y,w) # gradient descent update
         Ls = loss(X,Y,w)
         t += 1
     return w, t, np.linalg.norm(Ls)
