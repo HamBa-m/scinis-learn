@@ -103,7 +103,7 @@ def gradientReg(X,Y,w, reg=None, lamda = 0.5, alpha = 0.5):
 
     if reg == "Ridge" : 
         return (2/n) * np.dot(X.T,error) + lamda * 2 * w
-    elif reg == "Lasso" :
+    elif reg == "Sparse" :
         return (2/n) * np.dot(X.T,error) + lamda * np.sign(w) # using sub-gradient
     elif reg == "Elastic" :
         return (1/n) * np.dot(X.T,error) + lamda * (1 - alpha) * w + lamda * alpha * np.sign(w) 
@@ -114,7 +114,7 @@ def LogisticRegression(X, Y, reg = None, lamda = 0.5, alpha = 0.5, lr = 0.01):
     '''
     X: matrix of vectors x_i
     Y: vector of labels (scalars, 1 or 0) y_i
-    reg: type of regularization, either Ridge, Lasso, Elastic Net, or None
+    reg: type of regularization, either Ridge, Sparse, Elastic Net, or None
     lamda: parameter of regularization
     alpha: parameter of Elastic Net regularization
     lr: learning rate of the gradient descent
