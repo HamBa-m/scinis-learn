@@ -22,6 +22,4 @@ def generateData(data_size,x1,x2,x3,x4,y1,y2,y3,y4):
     return np.asarray(S)
 
 X =  generateData(50, 0, 15, 5, 20, 0, 15, 5, 20)
-print(X)
-
 np.savetxt("data_nsep_2D.csv", X, delimiter=",",fmt="%d")

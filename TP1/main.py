@@ -11,10 +11,10 @@ with open('data_nsep_2D.csv', mode='r') as csv_file:
         Y.append(np.array([int(row["y"])]))
 
 w = np.zeros(3)
-w0, t, ls = Adaline(X, Y, w, eps = 0.3)
-# w0, t = PLA(X, Y, w)
+# w0, t, ls = Adaline(X, Y, w, eps = 0.3)
+w0, t = PLA(X, Y, w)
 # w0, t, ls = Pocket(X, Y, w)
-print(w0, t, ls)
+print(w0, t)
 
 import matplotlib.pyplot as plt
 
