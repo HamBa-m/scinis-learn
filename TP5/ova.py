@@ -6,7 +6,7 @@ from algos.adaline import Adaline
 from algos.logistic_regression import LogisticRegression
 from algos.nonLinearTransformer import *
 
-def OVA(data, classes, algo, hyperpara):
+def OVA(data, classes, algo, hyperpara=[]):
     w_list = list()
     for e in classes:
         data_ = np.copy(data)

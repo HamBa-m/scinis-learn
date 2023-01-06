@@ -26,8 +26,8 @@ def Adaline(X,Y,w, eps = 0.2):
     eps: precision factor
     '''
     n, t = len(X), 0
-    lr = 0.0001 # learning rate for the gradient descent
-    while abs(gradient(X,Y,w)) > eps and t < 1000 :
+    lr = 0.00001 # learning rate for the gradient descent
+    while abs(gradient(X,Y,w)) > eps and t < 300 :
         print(gradient(X,Y,w))
         for i in range(n):
             if e(X[i], Y[i], w) != 0 : w += 2 * X[i] * e(X[i], Y[i], w) * lr
