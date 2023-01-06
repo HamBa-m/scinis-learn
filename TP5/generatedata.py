@@ -1,32 +1,50 @@
-from random import *
 import numpy as np
+from random import choice, randrange, uniform
 import math
-# function that generates uniformly randomized data in 2D
-def generateData(data_size,c1,c2,c3,r):
+
+def generate_data(data_size, circles, r):
     """
     data_size: number of vectors to generate
-    c1, c2, c3: centers coordinates of the 3 data zones (tuples)
-    r: radius * 100 of the 3 data zones
+    circles: a list of dictionaries, each containing the center coordinates and class label for a circle
+    r: radius of the circles
     """
     S = []
     for i in range(data_size):
-        c = [0,1,2]
-        id = choice(c)
-        if id == 0:
-            x = c1[0] + randrange(-r,r)/20
-            y = math.sqrt((r/20)**2 - x**2)
-            S.append(np.array([1,x,y, 1]))
-        elif id == 1:
-            x = c2[0] + randrange(-r,r)/20
-            y = math.sqrt((r/20)**2 - x**2)
-            S.append(np.array([1,x,y, 2]))
-        else:
-            x = c3[0] + randrange(-r,r)/20
-            y = math.sqrt((r/20)**2 - x**2)
-            S.append(np.array([1,x,y, 3]))
+        circle = choice(circles)
+        x = circle['center'][0] + uniform(-r*10, r*10)/10
+        y = circle['center'][1] + uniform(-r*10, r*10)/10
+        if math.sqrt((x - circle['center'][0])**2 + (y - circle['center'][1])**2) > r:
+            # If the point is outside the circle, try again
+            continue
+        S.append(np.array([1, x, y, circle['class']]))
     return np.asarray(S)
 
-X =  generateData(500, (5,5), (16,16), (16,5), 100)
-print(X)
+# Define the center coordinates and class labels for each circle
+circles = [
+    {'center': (0, 0), 'class': 1},
+    {'center': (8, 2.5), 'class': 2},
+    {'center': (0, 10), 'class': 3}
+]
 
-np.savetxt("data_sep_2D.csv", X, delimiter=",",fmt="%d")
+# Generate a dataset with 1000 samples
+data_size = 500
+r = 2.9
+data = generate_data(data_size, circles, r)
+
+import matplotlib.pyplot as plt
+
+# Extract the x and y coordinates and class labels from the data
+x = data[:, 1]
+y = data[:, 2]
+labels = data[:, 3]
+
+# Set the colors for each class
+colors = ['red', 'green', 'blue']
+
+# Create a scatter plot
+plt.scatter(x, y, c=[colors[int(label)-1] for label in labels])
+
+# Show the plot
+plt.show()
+
+np.savetxt("data_sep_2D.csv", data, delimiter=",",fmt="%f")
