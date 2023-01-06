@@ -82,7 +82,7 @@ X_, Y_ = test[:,:10], test[:,10]
 #     print("|Ld - Ls| = ", "{0:.6f}".format(abs(ld - ls)))
 
 # Elastic Net Regression
-print("Ridge Logistic Regression:")
+print("Lasso Logistic Regression:")
 for lamda in [0.01,0.1,0.2,0.5,1,2]:
     w0, ls = LinearRegression(X, Y, reg="Lasso", lamda= lamda, lr=0.01)
     ld = loss(X_, Y_, w0, reg="Lasso", lamda=lamda)

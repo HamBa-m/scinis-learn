@@ -125,7 +125,7 @@ def LogisticRegression(X, Y, reg = None, lamda = 0.5, alpha = 0.5, lr = 0.01):
     Tmax = 200
     for i in range(Tmax):
         dw = gradientReg(X, Y, w, reg=reg, lamda=lamda, alpha=alpha)
-        w += lr * dw 
+        w -= lr * dw 
         sys.stdout.write(colorama.Fore.GREEN + "\r{1}%\t{0}>".format("="*int(50 * ((i+1)/Tmax))+"-" *int(50 * (1 - (i+1)/Tmax)),int(100*(i+1)/Tmax)))
         sys.stdout.flush()
     sys.stdout.write(colorama.Fore.WHITE)
