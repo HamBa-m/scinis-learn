@@ -1,7 +1,7 @@
 # Machine Learning from Scratch - Python 3
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 ![Version 1.2](https://img.shields.io/badge/Version-1.2-blue.svg)
-![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg)(https://www.python.org/downloads/release/python-360/)
+[![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 ![GitHub issues](https://img.shields.io/github/issues/HamzaBamohammed/Machine-Learning-from-Scratch-Python-3)
 
 ## Overview 
