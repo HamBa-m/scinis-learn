@@ -1,5 +1,5 @@
 from k_fold import *
-from validation import *
+from splitData import *
 
 # data extraction
 data = []
@@ -12,7 +12,7 @@ with open('temp_pre.csv', mode='r') as csv_file:
         data.append([X, Y])
 
 # validation using 1:5 ratio
-train, valid = validation(data)
+train, valid = split(data)
 print("training set:\n",train)
 print("validation set\n", valid)
 print()
