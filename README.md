@@ -1,8 +1,8 @@
 # Machine Learning from Scratch - Python 3
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![Version 1.2](https://img.shields.io/badge/Version-1.2-blue.svg)]
-[![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
-[![GitHub issues](https://img.shields.io/github/issues/HamzaBamohammed/Machine-Learning-from-Scratch-Python-3)]
+![Version 1.2](https://img.shields.io/badge/Version-1.2-blue.svg)
+![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg)(https://www.python.org/downloads/release/python-360/)
+![GitHub issues](https://img.shields.io/github/issues/HamzaBamohammed/Machine-Learning-from-Scratch-Python-3)
 
 ## Overview 
 In this package, we've implemented a few basic machine learning algorithms from scratch. The algorithms are implemented in Python 3.6. The algorithms are as follows:
