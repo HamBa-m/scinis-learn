@@ -50,7 +50,7 @@ def gradient(X,Y,w):
     return - np.sum([2 * X[i] * e(X[i], Y[i], w) for i in range(len(X))])/len(X)
 
 # Single Layer Perceptron with Adaline
-def Adaline(X,Y,w, eps = 0.2):
+def Adaline(X,Y,w, delta = 0.2):
     '''
     description: Adaline is a Perceptron with a linear activation function
     args:
@@ -63,9 +63,9 @@ def Adaline(X,Y,w, eps = 0.2):
         t: number of iterations
         loss: loss function value
     '''
-    n, t = len(X), 0
+    n, t, Tmax = len(X), 0, 100
     lr = 0.0001 # learning rate for the gradient descent
-    while abs(gradient(X,Y,w)) > eps and t < 1000 :
+    while abs(gradient(X,Y,w)) > delta and t < Tmax :
         print(gradient(X,Y,w))
         for i in range(n):
             if e(X[i], Y[i], w) != 0 : w += 2 * X[i] * e(X[i], Y[i], w) * lr

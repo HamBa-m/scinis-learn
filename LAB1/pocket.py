@@ -37,7 +37,7 @@ def Pocket(X,Y,w):
         loss: average empirical loss
     '''
     n, t = len(X), 0
-    Tmax = 1000
+    Tmax = 100
     w0 = np.array(w)
     while t < Tmax:
         for i in range(n):
