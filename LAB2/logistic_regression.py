@@ -84,7 +84,7 @@ def LogisticRegression(X,Y, lr = 0.1, Tmax = 2000, epsilon = 0.4):
     w = np.zeros(X.shape[1]) # initialize weights vector
     Ls = loss(X,Y,w) # empirical loss
     while(np.linalg.norm(Ls) > epsilon and t < Tmax): # stopping criterion
-        print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(Ls)) # print loss
+        if t%100 == 0 : print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(Ls)) # print loss each 100 iteration
         w -= lr * gradient(X,Y,w) # gradient descent update
         Ls = loss(X,Y,w) # empirical loss update
         t += 1 # iteration counter update

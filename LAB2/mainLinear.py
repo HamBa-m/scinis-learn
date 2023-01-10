@@ -16,7 +16,7 @@ print("optimal weight vector: ", w0,"\t| empirical loss: ", "{0:.6f}".format(ls)
 
 import matplotlib.pyplot as plt
 
-plt.plot(X[:,1],Y,"or")
+plt.plot(X[:,1],Y,"or", label="real data")
 
 Z = [i for i in range(4,28)]
 # hyperplan equation (in 2D)
@@ -24,7 +24,9 @@ def h(wop,x):
     return wop[1] * x + wop[0]
 
 hyper = [h(w0, e) for e in Z]
-plt.plot(Z,hyper,"-b" )
+plt.plot(Z,hyper,"-b", label="regression line")
 
+plt.legend()
+plt.title("the real distance and the estimated one with respect to the speed")
 plt.show()
 
