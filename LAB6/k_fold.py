@@ -38,4 +38,4 @@ def k_fold(data):
             ind = randrange(len(data_)) # choose a random index
             l.append(data_.pop(ind)) # add the data point at the index to the partition
         partitions.append(l) # add the partition to the list of partitions
-    return partitions
+    return np.asarray(partitions)
