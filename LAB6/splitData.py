@@ -15,5 +15,5 @@ def split(data, p = 0.2):
     k = int(m * p) # number of data points in validation set
     for i in range(k):
         ind = randrange(len(training)) # choose a random index in training set 
-        validation.append(training.pop(ind)) # add the data point at the index to the validation set 
-    return training, validation
+        validation.append(np.asarray(training.pop(ind))) # add the data point at the index to the validation set 
+    return np.asarray(training), np.asarray(validation)

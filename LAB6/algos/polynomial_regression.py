@@ -45,7 +45,7 @@ def loss(X,Y,w):
         w: vector of weights
     return: average empirical error
     '''
-    n = len(X) # size of data sample
+    n = X.shape[0] # size of data sample
     error = [(e(X[i], Y[i], w))**2 for i in range(len(X))] # Mean-Squared Error (MSE)
     return np.sum(error)/n
 
