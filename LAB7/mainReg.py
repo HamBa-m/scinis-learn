@@ -1,5 +1,5 @@
 from regularization import *
-from validation import *
+from splitData import *
 import numpy as np
 import csv
 
