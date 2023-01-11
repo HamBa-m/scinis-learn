@@ -58,7 +58,7 @@ def LogisticRegression(X, Y, lr = 0.1, Tmax = 1000, eps = 0.2):
     w = np.zeros(X.shape[1]) # initialize weights vector
     ls = Ls(X,Y,w) # empirical loss
     while(ls > eps and t < Tmax): # stopping criterion
-        if not(t%100) : print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(ls)) # print loss every 100 iterations
+        if not(t%200) : print("iter:",t,"\t| empirical loss: ", "{0:.6f}".format(ls)) # print loss every 100 iterations
         w -= lr * DLs(X,Y,w) # update weights with gradient descent
         ls = Ls(X,Y,w) # update empirical loss
         t += 1 # increment iteration counter
@@ -82,24 +82,53 @@ def psy(x,q):
                 w.append(PSI_Q[i][j] * x[k]) 
     return np.array(w)
 
-# define a function to plot the decision boundary (NOT FINAL)
-def plotDecisionBoundary(w0, X_, axes):
-    u = np.linspace(-1, 1.5, 50)
-    v = np.linspace(-1, 1.5, 50)
-    U,V = np.meshgrid(u,v)
-    # convert U, V to vectors for calculating additional features
-    # using vectorized implementation
-    U = np.ravel(U)
-    V = np.ravel(V)
-    Z = np.zeros((len(u) * len(v)))
-    
-    Z = X_.dot(w0)
-    
-    # reshape U, V, Z back to matrix
-    U = U.reshape((len(u), len(v)))
-    V = V.reshape((len(u), len(v)))
-    Z = Z.reshape((len(u), len(v)))
-    
-    cs = axes.contour(U,V,Z,levels=[0],cmap= "Greys_r")
-    axes.legend(labels=['1', '0', 'Decision Boundary'])
-    return cs
+# plot non linear decision boundary in 2 dimensions with matplotlib
+def plotNonLinearDecisionBoundary2D(X, Y, w, q):
+    """
+    description: plot non linear decision boundary in 2 dimensions with matplotlib
+    args:
+        X: a list of vectors x_i
+        Y: the list of labels y_i associated
+        w: weight vector
+        q: polynom's degree
+    return: None
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.colors import ListedColormap
+    from matplotlib import cm
+    from matplotlib import colors
+    from matplotlib.ticker import LinearLocator, FormatStrFormatter
+    from mpl_toolkits.mplot3d import Axes3D
+    import numpy as np
+    import math
+
+    # create meshgrid
+    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
+    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+    h = (x_max - x_min)/100 
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+
+    # create color map
+    cmap_light = ListedColormap(['#FFAAAA', '#AAAAFF'])
+    cmap_bold = ListedColormap(['#FF0000', '#0000FF'])
+
+    # create figure
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(111)
+
+    # plot decision surface
+    Z = np.array([hw(psy(np.array([x,y]),q), w) for x, y in zip(np.ravel(xx), np.ravel(yy))])
+    Z = Z.reshape(xx.shape)
+    ax.contourf(xx, yy, Z, cmap=cm.viridis, alpha=0.8)
+    ax.contour(xx, yy, Z, [0.5], linewidths=2, colors='k')
+
+    # plot training points
+    ax.scatter(X[:, 0], X[:, 1], c=Y, cmap=cmap_bold, edgecolor='k', s=20)
+
+    # set labels
+    ax.set_xlabel('x1')
+    ax.set_ylabel('x2')
+    ax.set_title("Non linear decision boundary with logistic regression\ndegree = " + str(q))
+
+    # save plot
+    plt.savefig("plot"+str(q)+".png")

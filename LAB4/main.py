@@ -2,6 +2,7 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from nonLinearTransformer import *
+from splitData import *
 
 X1, X2, Y1, Y2, X, Y = [],[],[],[],[],[]
 
@@ -15,25 +16,36 @@ with open('ex2data2.csv', mode='r') as csv_file:
         else : 
             X2.append(float(row["x1"]))
             Y2.append(float(row["x2"]))
-        X.append([1,float(row["x1"]), float(row["y"])])
-        Y.append(float(row["y"]))
+        X.append([float(row["x1"]), float(row["x2"]), float(row["y"])])
 
-X, Y = np.asarray(X), np.asarray(Y)
+# split data into training and test sets
+train, test = split(X, p = 0.2)
 
-X_ = np.asarray([psy(x,2) for x in X])
-w0, t, ls = LogisticRegression(X_, Y, eps = 0.1)
-print("FINAL RESULTS:")
-print("optimal weight vector: ", w0,"\t| empirical loss: ", "{0:.6f}".format(ls))
+# separate features and labels
+train_x, train_y, test_x, test_y = train[:,:2], train[:,-1], test[:,:2], test[:,-1]
 
-fig, axes = plt.subplots()
-# plot results
-axes.plot(X1,Y1,'+', color="black", label = 'y = 1')
-axes.plot(X2,Y2,'o', color="yellow", label = 'y = 0')
+# list to keep track of training and test errors
+hist = []
 
-plotDecisionBoundary(w0, X_, axes)
+for degree in range(1,7):
+    train_x_ = np.asarray([psy(x,degree) for x in train_x])
+    test_x_ = np.asarray([psy(x,degree) for x in test_x])
+    print("Logistic regression starts...")
+    print("Degree ", degree, ":")
+    print("Training set features: ", train_x_.shape[1])
+    w0, t, ls = LogisticRegression(train_x_, train_y, eps = 0.1)
+    hist.append((w0, t, "{0:.6f}".format(ls), "{0:.6f}".format(Ls(test_x_, test_y, w0))))
+    print("#"*20)
+    # plot decision boundary
+    plotNonLinearDecisionBoundary2D(train_x, train_y, w0, degree)
 
-axes.xlabel("probability")
-axes.ylabel("Microship Test 2")
-axes.legend()
-axes.title("data plot")
-axes.show()
+# plot training and test error evolution with degree of polynomial transformation
+plt.plot(range(1,7), [float(h[2]) for h in hist], label = "training error")
+plt.plot(range(1,7), [float(h[3]) for h in hist], label = "test error")
+plt.xlabel("degree")
+plt.ylabel("loss")
+plt.title("training and test error evolution with degree of polynomial transformation")
+plt.legend()
+plt.show()
+
+
