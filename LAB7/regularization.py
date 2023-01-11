@@ -84,7 +84,7 @@ def LinearRegression(X, Y, reg = None, lamda = 0.5, alpha = 0.5, lr = 0.01):
         Tmax = 200 # upper bound on number of iterations 
         for i in range(Tmax):
             dw = gradientLin(X, Y, w, reg=reg, lamda=lamda, alpha=alpha) # compute gradient
-            w += lr * dw  # update weights 
+            w -= lr * dw  # update weights 
             sys.stdout.write(colorama.Fore.GREEN + "\r{1}%\t{0}>".format("="*int(50 * ((i+1)/Tmax))+"-" *int(50 * (1 - (i+1)/Tmax)),int(100*(i+1)/Tmax))) 
             # progress bar
             sys.stdout.flush() 

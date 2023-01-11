@@ -1,5 +1,5 @@
 from regularization import *
-from validation import *
+from splitData import *
 import numpy as np
 import csv
 
@@ -56,7 +56,7 @@ print("|Ld - Ls| = ", "{0:.6f}".format(abs(ld - ls)))
 
 # Ridge Regression
 print("Ridge Regression:")
-for lamda in [0.01,0.1,0.2,0.5,1,2]:
+for lamda in [0.1,0.5,1,2,10]:
     w0, ls = LinearRegression(X, Y, reg="Ridge", lamda= lamda)
     ld = loss(X_, Y_, w0, reg="Ridge", lamda=lamda)
     print("empirical loss: ", "{0:.6f}".format(ls),"\t | lamda ", lamda)
@@ -65,7 +65,7 @@ for lamda in [0.01,0.1,0.2,0.5,1,2]:
 
 # Lasso Regression
 print("Lasso Regression:")
-for lamda in [0.01,0.1,0.2,0.5,1,2]:
+for lamda in [0.1,0.5,1,2,10]:
     w0, ls = LinearRegression(X, Y, reg="Lasso", lamda= lamda, lr=0.01)
     ld = loss(X_, Y_, w0, reg="Lasso", lamda=lamda)
     print("\nempirical loss: ", "{0:.6f}".format(ls),"\t | lamda ", lamda)
@@ -74,7 +74,7 @@ for lamda in [0.01,0.1,0.2,0.5,1,2]:
 
 # Elastic Net Regression
 print("Elastic Net Regression:")
-for lamda in [0.01,0.1,0.2,0.5,1,2]:
+for lamda in [0.1,0.5,1,2,10]:
     w0, ls = LinearRegression(X, Y, reg="Lasso", lamda= lamda, lr=0.01)
     ld = loss(X_, Y_, w0, reg="Lasso", lamda=lamda)
     print("\nempirical loss: ", "{0:.6f}".format(ls),"\t | lamda ", lamda)
