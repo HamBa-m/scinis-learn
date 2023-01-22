@@ -30,4 +30,5 @@ These codes were made in the context of the Learning Theory course Fall 2023 at 
 
 - [@HamzaBamohammed](https://www.github.com/HamzaBamohammed), Applied Mathematics & AI engineering student at ENSIAS
 - [@FilaliHicham](https://www.github.com/FILALIHicham), Applied Mathematics & AI engineering student at ENSIAS
+- [@BouchraSahri](https://www.github.com/bouchrasa), Applied Mathematics & AI engineering student at ENSIAS
 - [@NechbaMohammed](https://www.github.com/NechbaMohammed), Applied Mathematics & AI engineering student at ENSIAS
