@@ -21,6 +21,7 @@ with open('California_House_Price.csv', mode='r') as csv_file:
         else : new += [2]
         X.append(np.array(new + [float(row["median_house_value"])]))
 
+print("Data reading finished")
 # data normalization
 # Z-value transformer
 def Zvalue(x,mean,std):

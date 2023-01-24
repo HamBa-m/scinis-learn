@@ -4,7 +4,7 @@ from adaline import *
 import csv
 
 X, Y = [], []
-with open('data_nsep_2D.csv', mode='r') as csv_file:
+with open('data_sep_2D.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
         X.append(np.array([int(row["x0"]),int(row["x1"]),int(row["x2"])]))
