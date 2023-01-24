@@ -24,7 +24,13 @@ Furthermore, we've implemented a few basic algorithms useful in the cristalizati
 - Vapnik Chervonenkis Dimension (VC-Dimension) 
 - Covering and Uniform Covering Number
 
-All the algorithms are implemented in the `lib` folder.
+Finally, we also added a few basic functions to help you create dummy data and plot results of the algorithms :
+
+- Generate Dummy Data (in 2D and 3D)
+- Plot Linear Decision Boundary (in 2D and 2D)
+- Plot Non-Linear Decision Boundary (in 2D)
+
+All the algorithms and tools are implemented in the `lib` folder.
 
 These codes were made in the context of the Learning Theory course Fall 2023 at ENSIAS - University Mohammed V - Rabat, Morocco. You can find the LABS and the corresponding PDFs in the `ensias_labs` folder.
 
