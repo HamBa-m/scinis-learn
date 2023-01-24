@@ -1,6 +1,6 @@
 import numpy as np
-from hypothesis import h
-from activation import sigmoid, sign
+from .hypothesis import h
+from .activation import sigmoid, sign
 
 ################ empirical loss functions ################
 # 0-1 loss
@@ -13,7 +13,7 @@ def loss01(X,Y,w):
     returns: average empirical loss
     '''
     n = len(X) # size of data sample
-    misclassified = [1 if sign(X[i], Y[i], w) == 1  else 0 for i in range(len(X))]
+    misclassified = [1 if sign(X[i], Y[i], w) != 1  else 0 for i in range(len(X))]
     return sum(misclassified)/n
 
 # Arithmetical Mean (AM)
@@ -55,7 +55,7 @@ def cross_entropy(X,Y,w, reg=None, lamda=0.5, alpha = 0.5):
     return: loss function with regularization variants
     """
     n = len(X) # size of data sample
-    error = [- np.log(sigmoid(Y[i] * h(X[i],w))) for i in range(len(X))]
+    error = [- Y[i] * np.log(sigmoid(h(X[i],w))) for i in range(len(X))]
     if reg == "Elastic":
         return np.sum(error)/n + (lamda * alpha) * np.sum(np.array([abs(e) for e in w]))+ (lamda * (1 - alpha) /(2 *n)) * np.sum(np.power(w,2))
     elif reg == "Ridge" : 
@@ -104,7 +104,7 @@ def Dcross_entropy(X,Y,w, reg=None, lamda = 0.5, alpha = 0.5):
     return: gradient of loss function with regularization variants
     """
     n = len(X) # size of data sample
-    error =np.array([sigmoid(h(X[i],w)) - Y[i] for i in range(len(X))])
+    error = np.array([sigmoid(h(X[i],w)) - Y[i] for i in range(len(X))])
 
     if reg == "Ridge" : 
         return (2/n) * np.dot(X.T,error) + lamda * 2 * w
@@ -113,4 +113,4 @@ def Dcross_entropy(X,Y,w, reg=None, lamda = 0.5, alpha = 0.5):
     elif reg == "Elastic" :
         return (1/n) * np.dot(X.T,error) + lamda * (1 - alpha) * w + lamda * alpha * np.sign(w)
 
-    return (1/n) * np.dot(X.T,(error))
+    return (1/n) * np.dot(X.T,error)

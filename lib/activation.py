@@ -1,5 +1,5 @@
 import numpy as np
-from hypothesis import h
+from .hypothesis import h
 
 ################ activation functions ################
 # sign function

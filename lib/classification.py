@@ -1,9 +1,9 @@
 import numpy as np
 import sys
 import colorama # for colored output in terminal
-from activation import hs
-from loss import loss01, lossAM, cross_entropy, DlossAM, Dcross_entropy
-from nonLinearTransformer import polyMap
+from .activation import sign
+from .loss import loss01, lossAM, cross_entropy, DlossAM, Dcross_entropy
+from .transformation import polyMap
 
 ################ binary classification ERM algorithms ################
 # Single Layer Perceptron
@@ -20,7 +20,7 @@ def PLA(X,Y,w):
     n, t = len(X), 0
     while loss01(X,Y,w) != 0:
         for i in range(n):
-            if hs(X[i], Y[i], w) < 0 : w += X[i]*Y[i]
+            if sign(X[i], Y[i], w) < 0 : w += X[i]*Y[i]
         t += 1
         print("iter=",t," | loss=",loss01(X,Y,w))
     return w, t
@@ -38,11 +38,11 @@ def Pocket(X,Y,w):
         loss: average empirical loss
     '''
     n, t = len(X), 0
-    Tmax = 100
+    Tmax = 500
     w0 = np.array(w)
     while t < Tmax:
         for i in range(n):
-            if hs(X[i], w0) * Y[i] < 0 : w0 += X[i]*Y[i]
+            if sign(X[i],Y[i], w0) < 0 : w0 += X[i]*Y[i]
         t += 1
         print("iter=",t," | loss= ",loss01(X,Y,w))
         if loss01(X,Y,w0) < loss01(X,Y,w) : w = w0
@@ -73,7 +73,7 @@ def Adaline(X,Y,w, delta = 0.2):
     return w, t, lossAM(X,Y,w)
 
 # logistic regression
-def LogisticRegression(X, Y, reg = None, lamda = 0.5, alpha = 0.5, lr = 0.01):
+def LogisticRegression(X, Y, reg = None, lamda = 0.5, alpha = 0.5, lr = 0.1):
     '''
     description: logistic regression using gradient descent and regularization
     args:
@@ -88,7 +88,7 @@ def LogisticRegression(X, Y, reg = None, lamda = 0.5, alpha = 0.5, lr = 0.01):
     w = np.zeros(X.shape[1]) # initialize weights vector
 
     # Lasso and Elastic Net cases needs an iterative search using gradient descent
-    Tmax = 200 # upper bound on number of iterations
+    Tmax = 2000 # upper bound on number of iterations
     for i in range(Tmax):
         dw = Dcross_entropy(X, Y, w, reg=reg, lamda=lamda, alpha=alpha) # compute gradient
         w -= lr * dw # update weights

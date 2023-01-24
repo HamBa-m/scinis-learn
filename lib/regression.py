@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import linalg as lg
-from loss import lossAM, DlossAM
+from .loss import lossAM, DlossAM
 import colorama # for colored output in terminal
 import sys
 
