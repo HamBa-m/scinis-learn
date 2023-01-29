@@ -1,8 +1,9 @@
-# Machine Learning from Scratch - Python 3
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 ![Version 2](https://img.shields.io/badge/Version-2-blue.svg)
-[![Python 3.8](https://img.shields.io/badge/Python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Python 3.8](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
+
+![logo](figs/SCL.png)
 ## Overview 
 In this package, we've implemented a few basic machine learning algorithms from scratch. The algorithms are implemented in Python 3.8. The algorithms are as follows:
     
@@ -38,12 +39,12 @@ These codes were made in the context of the Learning Theory course Fall 2023 at 
 
 ## Authors and Contributors
 
-- [@HamzaBamohammed](https://www.github.com/HamzaBamohammed), Applied Mathematics & AI engineering student at ENSIAS
-- [@FilaliHicham](https://www.github.com/FILALIHicham), Applied Mathematics & AI engineering student at ENSIAS
-- [@BouchraSahri](https://www.github.com/bouchrasa), Applied Mathematics & AI engineering student at ENSIAS
-- [@NechbaMohammed](https://www.github.com/NechbaMohammed), Applied Mathematics & AI engineering student at ENSIAS
-- Hanaa El Afia, Applied Mathematics & AI engineering student at ENSIAS
-- Mohamed Mouhajir, Applied Mathematics & AI engineering student at ENSIAS
+- [Hamza Bamohammed](https://www.github.com/HamzaBamohammed), Applied Mathematics & AI engineering student at ENSIAS
+- [Hicham Filali](https://www.github.com/FILALIHicham), Applied Mathematics & AI engineering student at ENSIAS
+- [Bouchra Sahri](https://www.github.com/bouchrasa), Applied Mathematics & AI engineering student at ENSIAS
+- [Mohammed Nechba](https://www.github.com/NechbaMohammed), Applied Mathematics & AI engineering student at ENSIAS
+- [Hanaa El Afia](https://github.com/hanaa-elafia), Applied Mathematics & AI engineering student at ENSIAS
+- [Mohamed Mouhajir](https://github.com/mohamedmohamed2021), Applied Mathematics & AI engineering student at ENSIAS
 
 ## Installation
 
