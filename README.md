@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 =======
 # Machine Learning from Scratch - Python 3
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/HamzaBamohammed/ML-from-scratch-with-Python/blob/main/LICENSE)
->>>>>>> 99b46dfece41c71b58d54d393a7b5ae46a9740d3
 ![Version 2](https://img.shields.io/badge/Version-2-blue.svg)
 [![Python 3.8](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
