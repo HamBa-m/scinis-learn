@@ -1,5 +1,5 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/HamzaBamohammed/ML-from-scratch-with-Python/blob/main/LICENSE)
-![Version 2](https://img.shields.io/badge/Version-2-blue.svg)
+![Version 1](https://img.shields.io/badge/Version-1-blue.svg)
 [![Python 3.8](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
 
@@ -51,7 +51,7 @@ These codes were made in the context of the Learning Theory course Fall 2023 at 
 To install the package, you can use the following command :
 
 ```bash
-  git clone https://github.com/HamzaBamohammed/ML-from-scratch-with-Python.git
+  git clone https://github.com/HamzaBamohammed/scinis-learn.git
 ```
 
 # Usage/Examples
