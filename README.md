@@ -51,7 +51,7 @@ These codes were made in the context of the Learning Theory course Fall 2023 at 
 To install the package, you can use the following command :
 
 ```bash
-  git clone https://github.com/HamzaBamohammed/scinis-learn.git
+  git clone https://github.com/HamBa-m/scinis-learn.git
 ```
 
 # Usage/Examples
