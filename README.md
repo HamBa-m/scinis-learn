@@ -1,3 +1,5 @@
+
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/HamzaBamohammed/ML-from-scratch-with-Python/blob/main/LICENSE)
 ![Version 1](https://img.shields.io/badge/Version-1-blue.svg)
 [![Python 3.8](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
@@ -28,7 +30,7 @@ Furthermore, we've implemented a few basic algorithms useful in the cristalizati
 Finally, we also added a few basic functions to help you create dummy data and plot results of the algorithms :
 
 - Generate Dummy Data (in 2D and 3D)
-- Plot Linear Decision Boundary (in 2D and 2D)
+- Plot Linear Decision Boundary (in 2D and 3D)
 - Plot Non-Linear Decision Boundary (in 2D)
 - Plot Linear Regression (in 2D)
 
