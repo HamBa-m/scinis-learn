@@ -15,23 +15,28 @@ def divisors(m):
             div.add(m//i) # add m//i to the set
     return list(div)
 
-def k_folds(data):
+def k_folds(data, k=None):
     """
     description: k-fold cross validation partitions of data
     args:
         data: list of data points
+        k: number of folds, must be a divisor of len(data). If None, prompts
+           interactively for a value among the valid divisors.
     return: list of k partitions of data
     """
     partitions = list() # list of k partitions of data
     data_ = list(data) # copy of data to avoid modifying data
     m = len(data) # size of data
     div = divisors(m) # list of divisors of m (k values)
-    print("please choose a k value among the following:") # ask user to choose a k value
-    for e in div: # print divisors of m (allowed k values)
-        print(e, end=" ")
-    print()
-    k = int(input()) # read k value from user 
-    for i in range(k): # for each partition 
+    if k is None: # no k passed in, fall back to the interactive prompt
+        print("please choose a k value among the following:") # ask user to choose a k value
+        for e in div: # print divisors of m (allowed k values)
+            print(e, end=" ")
+        print()
+        k = int(input()) # read k value from user
+    elif k not in div: # k passed in but not a valid number of equal-sized folds
+        raise ValueError(f"k={k} is not a divisor of data size {m}; valid values are {div}")
+    for i in range(k): # for each partition
         l = list() # list of data points in the partition
         while len(l) < int(m/k): # while the partition is not full
             ind = randrange(len(data_)) # choose a random index
