@@ -2,6 +2,7 @@ import numpy as np
 import sys
 import colorama # for colored output in terminal
 from .activation import sign
+from .hypothesis import h
 from .loss import loss01, lossAM, cross_entropy, DlossAM, Dcross_entropy
 from .transformation import polyMap
 
@@ -128,12 +129,10 @@ def OVA(data, classes, algo, hyperpara=[]):
             w, t, ls = Adaline(data_[:,:col-1],data_[:,-1],w,eps)
             w_list.append(w)
         elif algo == "Logistic":
-            # hyperpara = [lr, Tmax, epsilon]
+            # hyperpara = [lr]
             col = data_.shape[1]
             lr = np.copy(hyperpara[0])
-            Tmax = np.copy(hyperpara[1])
-            eps = np.copy(hyperpara[2])
-            w, t, ls = LogisticRegression(data_[:,:col-1],data_[:,-1],lr,Tmax,eps)
+            w, ls = LogisticRegression(data_[:,:col-1],data_[:,-1],lr=lr)
             w_list.append(w)
         elif algo == "Pocket Trans":
             # hyperpara = [q]
@@ -154,14 +153,20 @@ def OVA(data, classes, algo, hyperpara=[]):
             w_list.append(w)
     return w_list
 
+# One-vs-All prediction: score every classifier and take the highest-scoring class
+def predictOVA(x, w_list, classes):
+    scores = [h(x, w) for w in w_list]
+    return classes[int(np.argmax(scores))]
+
 # One-vs-One
 def OVO(data, classes, algo, hyperpara=[]):
     w_list = list()
+    pairs = list()
     col = data.shape[1]
-    for e in classes:
-        print(classes,e)
-        classes.remove(e)
-        for f in classes:
+    remaining = list(classes)
+    for e in list(classes):
+        remaining.remove(e)
+        for f in remaining:
             data_ = []
             for k in range(data.shape[0]):
                 if data[k][-1] == e : 
@@ -193,12 +198,10 @@ def OVO(data, classes, algo, hyperpara=[]):
                 w, t, ls = Adaline(data_[:,:col-1],data_[:,-1],w,eps)
                 w_list.append(w)
             elif algo == "Logistic":
-                # hyperpara = [lr, Tmax, epsilon]
+                # hyperpara = [lr]
                 col = data_.shape[1]
                 lr = np.copy(hyperpara[0])
-                Tmax = np.copy(hyperpara[1])
-                eps = np.copy(hyperpara[2])
-                w, t, ls = LogisticRegression(data_[:,:col-1],data_[:,-1],lr,Tmax,eps)
+                w, ls = LogisticRegression(data_[:,:col-1],data_[:,-1],lr=lr)
                 w_list.append(w)
             elif algo == "Pocket Trans":
                 # hyperpara = [q]
@@ -217,4 +220,13 @@ def OVO(data, classes, algo, hyperpara=[]):
                 eps = np.copy(hyperpara[0])
                 w, t, ls = Adaline(data_[:,:col-1],data_[:,-1],w,eps)
                 w_list.append(w)
-    return w_list
+            pairs.append((e, f))
+    return w_list, pairs
+
+# One-vs-One prediction: majority vote across all pairwise classifiers
+def predictOVO(x, w_list, pairs):
+    votes = dict()
+    for w, (e, f) in zip(w_list, pairs):
+        winner = e if h(x, w) > 0 else f
+        votes[winner] = votes.get(winner, 0) + 1
+    return max(votes, key=votes.get)

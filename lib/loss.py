@@ -58,10 +58,10 @@ def cross_entropy(X,Y,w, reg=None, lamda=0.5, alpha = 0.5):
     error = [- Y[i] * np.log(sigmoid(h(X[i],w))) for i in range(len(X))]
     if reg == "Elastic":
         return np.sum(error)/n + (lamda * alpha) * np.sum(np.array([abs(e) for e in w]))+ (lamda * (1 - alpha) /(2 *n)) * np.sum(np.power(w,2))
-    elif reg == "Ridge" : 
-        return np.sum(error)/n + (lamda/(2 *n)) * np.sum(np.array([abs(e) for e in w]))
-    elif reg == "Sparse" :
+    elif reg == "Ridge" :
         return np.sum(error)/n + (lamda/(2 *n)) * np.sum(np.power(w,2))
+    elif reg == "Sparse" :
+        return np.sum(error)/n + (lamda/(2 *n)) * np.sum(np.array([abs(e) for e in w]))
 
     return np.sum(error)/n
 
