@@ -10,7 +10,9 @@ def generateData(data_size, circles, dim = 2, filename="data.csv"):
     circles: a list of dictionaries, each containing the center coordinates, class label, and radius for a circle
     filename: name of the file to save the data to
     """
-    S = []
+
+    num_cols = dim + 2
+    S = np.zeros((data_size, num_cols))
     i = 0
 
     while i < data_size:   
@@ -25,13 +27,15 @@ def generateData(data_size, circles, dim = 2, filename="data.csv"):
             if math.sqrt((x - center[0])**2 + (y - center[1])**2 + (z - center[2])**2) > radius:
                 # If the point is outside the circle, try again
                 continue
-            S.append([1, x, y, clss])
+
+            S[i] = np.array([1, x, y, z, clss])
             i += 1      # increment only if you you add a point to the array (dim = 3)
         elif dim == 2:
             if math.sqrt((x - center[0])**2 + (y - center[1])**2) > radius:
                 # If the point is outside the circle, try again
                 continue
-            S.append([1, x, y, clss])
+
+            S[i] = np.array([1, x, y, clss])
             i += 1      # increment only if you add a point to the array (dim = 2)
         else: 
             print("Error: dim must be 2 or 3")
