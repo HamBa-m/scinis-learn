@@ -8,6 +8,12 @@ from typing import List, Dict, Any, Optional
 ################ Data Generation ################
 
 def generateData(data_size: int, circles: List[Dict[str, Any]], dim: int = 2, filename: str = "data.csv") -> np.ndarray:
+    """
+    data_size: number of vectors to generate
+    circles: a list of dictionaries, each containing the center coordinates, class label, and radius for a circle
+    filename: name of the file to save the data to
+    """
+
     if dim not in [2, 3]:
         print("Error: dim must be 2 or 3")
         return
